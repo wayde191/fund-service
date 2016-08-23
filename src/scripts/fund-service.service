@@ -1,0 +1,12 @@
+[Unit]
+Description=Fund Service
+After=network.target
+
+[Service]
+Type=simple
+User=fund-service
+ExecStart=/usr/bin/fund-service
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

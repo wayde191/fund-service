@@ -1,0 +1,3 @@
+if /usr/bin/systemctl status fund-service | /bin/grep --word-regexp --no-messages --silent process; then
+    /usr/bin/systemctl stop fund-service;
+fi

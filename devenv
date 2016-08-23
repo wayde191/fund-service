@@ -1,0 +1,30 @@
+#!/bin/bash -eu
+
+DIR=$(cd `dirname ${BASH_SOURCE}` > /dev/null && pwd)
+
+function install_lein {
+    sudo yum install --quiet --assumeyes java-1.7.0-openjdk > /dev/null
+
+    if [ ! -f $LEIN_ROOT/lein ]
+    then
+        curl --silent --create-dirs --output $LEIN_ROOT/lein http://www.ihakula.com:9000/tools/lein
+        chmod 755 $LEIN_ROOT/lein
+    fi
+}
+
+function install_package_tools {
+    sudo yum install --quiet --assumeyes rpm-build lxc lxc-templates  > /dev/null
+}
+
+LEIN_ROOT=$DIR/tools/lein
+install_lein
+
+install_package_tools
+
+export PATH=$LEIN_ROOT:$PATH
+
+if [ -f ./devenv.local ]; then
+   . ./devenv.local
+
+   export GO_PIPELINE_COUNTER GO_STAGE_COUNTER GO_PIPELINES_ENV GO_PIPELINES_PORT
+fi

@@ -1,0 +1,27 @@
+#!/bin/bash -eu
+
+if /usr/bin/systemctl status fund-service | /bin/grep --word-regexp --no-messages --silent process; then
+    /usr/bin/systemctl stop fund-service;
+fi
+
+VERSION=$1
+RPM_PATH=/var/lib/go-agent/pipelines/fund-service/target/rpm/fund-service/RPMS/noarch/fund-service-$VERSION-1.noarch.rpm
+
+remove_old_rpm() {
+    sudo yum -y remove fund-service.noarch
+}
+
+install_new_rpm() {
+    sudo yum -y install $RPM_PATH
+}
+
+run_service(){
+    sudo /usr/bin/systemctl daemon-reload
+    sudo /usr/bin/systemctl start fund-service
+}
+
+remove_old_rpm
+install_new_rpm
+run_service
+
+echo "######################## Fund Service deploy Done ##########################"

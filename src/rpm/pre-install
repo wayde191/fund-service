@@ -1,0 +1,13 @@
+# Add the "fund-service" user
+USER=fund-service
+USER_COMMENT="Fund service user"
+UNIQUE_USER_ID=953
+
+GROUP=$USER
+UNIQUE_GROUP_ID=$UNIQUE_USER_ID
+
+getent group $USER >/dev/null || groupadd --gid $UNIQUE_GROUP_ID --system $GROUP
+getent passwd $USER >/dev/null || \
+  useradd --uid $UNIQUE_USER_ID --gid $GROUP --shell /sbin/nologin \
+    --system --comment "${USER_COMMENT}" $USER
+exit 0

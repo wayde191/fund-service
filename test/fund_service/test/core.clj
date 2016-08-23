@@ -1,0 +1,1 @@
+(ns fund-service.test.core)
