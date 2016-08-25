@@ -1,6 +1,7 @@
 (ns utils.http
   (:require [clj-time.format :as dtf]
-            [clojure.walk :as walk]))
+            [clojure.walk :as walk]
+            [clj-http.client :as client]))
 
 (defn json-dates->dates
   [m req]
@@ -27,12 +28,7 @@
         (assoc resp :body ((apply comp json-post-parsers) body req))
         resp))))
 
-(defn wrap-jigsaw-token
-  "Middleware converting the :jigsaw-token option into an Authorization header."
-  [client]
-  (fn [req]
-    (if-let [jigsaw-token (:jigsaw-token req)]
-      (client (-> req (dissoc :jigsaw-token)
-                  (assoc-in [:headers "authorization"]
-                            (str "" jigsaw-token))))
-      (client req))))
+(defn http-atom [request]
+  (client/with-middleware client/default-middleware
+    (:body (client/get (request :url)
+             request))))
