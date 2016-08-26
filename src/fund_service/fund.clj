@@ -9,6 +9,7 @@
             [clojure.tools.logging :as log]
             [pl.danieljanus.tagsoup :as html-parser]
             [fund-service.mysql :as mysql]
+            [digest :as digest]
             ))
 
 (defn update-fund-company [company]
@@ -27,6 +28,7 @@
   (try
     (let [html-str (middleware/http-atom {:url config/fund-company-url})
           compaines (json/read-str (string/replace html-str #"﻿var FundCommpanyInfos=" "") :key-fn keyword)]
+      (println (digest/md5 html-str))
       (count (map #(update-fund-company %) compaines)))
     (catch Exception e
       (log/error (str "caught exception: " (.getMessage e) " with process-fund-company")))))
