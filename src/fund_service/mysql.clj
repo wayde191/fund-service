@@ -27,22 +27,22 @@
        :name name
        :search_field search-field})))
 
-(defn get-fund-company-md5 []
+(defn get-resource-md5-by-name [name]
   (let [md5 (sql/with-connection db
-              (sql/with-query-results rows ["select md5 from resource where name = 'fund_company'"]
+              (sql/with-query-results rows [(str "select md5 from resource where name = '" name "'" )]
                 (doall rows)))]
     (if (nil? md5)
       nil
       (:md5 (first md5)))))
 
-(defn insert-fund-company-md5 [md5]
+(defn insert-resource-md5-with-name [md5 name]
   (sql/with-connection db
     (sql/insert-records :resource
-      {:name "fund_company"
+      {:name name
        :md5 md5})))
 
-(defn update-fund-company-md5 [md5]
+(defn update-resource-md5-with-name [md5 name]
   (sql/with-connection db
     (sql/update-values :resource
-      ["name=?" "fund_company"]
+      ["name=?" name]
       {:md5 md5})))

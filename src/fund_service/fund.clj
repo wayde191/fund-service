@@ -27,15 +27,15 @@
   (try
     (let [html-str (middleware/http-atom {:url config/fund-company-url})
           html-md5 (digest/md5 html-str)
-          db-md5 (mysql/get-fund-company-md5)
+          db-md5 (mysql/get-resource-md5-by-name "fund_company")
           compaines (json/read-str (string/replace html-str #"﻿var FundCommpanyInfos=" "") :key-fn keyword)]
       (if (nil? db-md5)
-        (mysql/insert-fund-company-md5 html-md5)
+        (mysql/insert-resource-md5-with-name html-md5 "fund_company")
         (if (= html-md5 db-md5)
           (log/info (str "Same data for fund company: " html-md5))
           (do
             (count (map #(update-fund-company %) compaines))
-            (mysql/update-fund-company-md5 html-md5)))))
+            (mysql/update-resource-md5-with-name html-md5 "fund_company")))))
     (catch Exception e
       (log/error (str "caught exception: " (.getMessage e) " with process-fund-company")))))
 
