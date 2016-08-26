@@ -46,3 +46,25 @@
     (sql/update-values :resource
       ["name=?" name]
       {:md5 md5})))
+
+(defn get-fund-by-code [code]
+  (sql/with-connection db
+    (sql/with-query-results rows [(str "select * from fund where code = '" code "'")]
+      (doall rows))))
+
+(defn insert-fund [code short-name name type]
+  (sql/with-connection db
+    (sql/insert-records :fund
+      {:code code
+       :short_name short-name
+       :name name
+       :type type})))
+
+(defn update-fund [code short-name name type]
+  (sql/with-connection db
+    (sql/update-values :fund
+      ["code=?" code]
+      {:code code
+       :short_name short-name
+       :name name
+       :type type})))
