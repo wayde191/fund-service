@@ -9,8 +9,7 @@
             [clojure.tools.logging :as log]
             [pl.danieljanus.tagsoup :as html-parser]
             [fund-service.mysql :as mysql]
-            [digest :as digest]
-            ))
+            [digest :as digest]))
 
 (defn update-fund-company [company]
   (let [company-code (get company :COMPANYCODE)
@@ -27,9 +26,16 @@
 (defn process-fund-company []
   (try
     (let [html-str (middleware/http-atom {:url config/fund-company-url})
+          html-md5 (digest/md5 html-str)
+          db-md5 (mysql/get-fund-company-md5)
           compaines (json/read-str (string/replace html-str #"﻿var FundCommpanyInfos=" "") :key-fn keyword)]
-      (println (digest/md5 html-str))
-      (count (map #(update-fund-company %) compaines)))
+      (if (nil? db-md5)
+        (mysql/insert-fund-company-md5 html-md5)
+        (if (= html-md5 db-md5)
+          (log/info (str "Same data for fund company: " html-md5))
+          (do
+            (count (map #(update-fund-company %) compaines))
+            (mysql/update-fund-company-md5 html-md5)))))
     (catch Exception e
       (log/error (str "caught exception: " (.getMessage e) " with process-fund-company")))))
 

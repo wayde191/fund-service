@@ -26,3 +26,23 @@
       {:company_code company-code
        :name name
        :search_field search-field})))
+
+(defn get-fund-company-md5 []
+  (let [md5 (sql/with-connection db
+              (sql/with-query-results rows ["select md5 from resource where name = 'fund_company'"]
+                (doall rows)))]
+    (if (nil? md5)
+      nil
+      (:md5 (first md5)))))
+
+(defn insert-fund-company-md5 [md5]
+  (sql/with-connection db
+    (sql/insert-records :resource
+      {:name "fund_company"
+       :md5 md5})))
+
+(defn update-fund-company-md5 [md5]
+  (sql/with-connection db
+    (sql/update-values :resource
+      ["name=?" "fund_company"]
+      {:md5 md5})))
