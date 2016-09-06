@@ -92,7 +92,7 @@
     (println html)
     (log/info log-info)
     (try
-      (if (nil? (mysql/get-fund-net-value-by-date the-day))
+      (if (nil? (mysql/get-fund-net-value-by-code-date code the-day))
         (println "haha")
         (log/info "exist already! " log-info))
       (catch  Exception e
@@ -107,7 +107,31 @@
       (println e)
       (log/error (str "caught exception: " (.getMessage e) " with update-net-value")))))
 
-(defn insert-funds-net-value []
+
+(defn update-funds-net-value [fund show-day]
+  (let [code (get fund 0)
+        name (get fund 1)
+        net-value (get fund 3)
+        acc-net-value (get fund 4)
+        day-increase (get fund 7)
+        day-increase-rate (get fund 8)
+        buy-state (get fund 9)
+        sell-state (get fund 10)
+        commission (get fund 17)
+        the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))
+        log-info (str "update-funds-net-value " code " " name " " net-value " " commission " at the day: " the-day)
+        ]
+    (try
+      (if (nil? (mysql/get-fund-net-value-by-code-date code show-day))
+        (do
+          (mysql/insert-fund-net-value code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state commission show-day)
+          (log/info log-info))
+        (log/info "exist already! " log-info))
+      (catch  Exception e
+        (log/error (str "caught exception: " (.getMessage e) " with insert-fund-net-value"))))
+    ))
+
+(defn process-funds-net-value []
   (try
     (let [html-str (middleware/http-atom {:url (config/get-funds-data-url (coerce/to-long (time/now)))})
           trim-str (string/trim
@@ -121,17 +145,13 @@
           showday (first (:showday funds))
           the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))]
       (persist-as-json trim-str (str "/tmp/funds-net-value-" the-day ".json"))
-      (if (= showday the-day)
-        (println "equals")
-        (log/info "Not today's data."))
-      )
+      (count (map #(update-funds-net-value % showday) datas)))
     (catch Exception e
       (println e)
       (log/error (str "caught exception: " (.getMessage e) " with insert-funds-net-value")))))
 
 (defn start []
   (log/info "Starting the fund service ... ")
-  (process-fund-company)
-  (process-funds)
-  (insert-funds-net-value)
-  )
+;  (process-fund-company)
+;  (process-funds)
+  (process-funds-net-value))

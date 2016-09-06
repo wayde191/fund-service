@@ -52,10 +52,24 @@
     (sql/with-query-results rows [(str "select * from fund where code = '" code "'")]
       (doall rows))))
 
-(defn get-fund-net-value-by-date [date]
+(defn get-fund-net-value-by-code-date [code date]
   (sql/with-connection db
-    (sql/with-query-results rows [(str "select * from net_value where date = '" date "'")]
+    (sql/with-query-results rows [(str "select * from net_value where code = '" code "'" " and date = '" date "'")]
       (doall rows))))
+
+(defn insert-fund-net-value [code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state commission show-day]
+  (sql/with-connection db
+    (sql/insert-records :net_value
+      {:code code
+       :name name
+       :net_value net-value
+       :acc_net_value acc-net-value
+       :day_increase day-increase
+       :day_increase_rate day-increase-rate
+       :buy_state buy-state
+       :sell_state sell-state
+       :commission commission
+       :date show-day})))
 
 (defn get-all-funds []
   (sql/with-connection db
