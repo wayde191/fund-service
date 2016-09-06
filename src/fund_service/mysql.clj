@@ -52,6 +52,16 @@
     (sql/with-query-results rows [(str "select * from fund where code = '" code "'")]
       (doall rows))))
 
+(defn get-fund-net-value-by-date [date]
+  (sql/with-connection db
+    (sql/with-query-results rows [(str "select * from net_value where date = '" date "'")]
+      (doall rows))))
+
+(defn get-all-funds []
+  (sql/with-connection db
+    (sql/with-query-results rows ["select * from fund"]
+      (doall rows))))
+
 (defn insert-fund [code short-name name type]
   (sql/with-connection db
     (sql/insert-records :fund

@@ -4,6 +4,9 @@
             [clojure.string :as string]
             [utils.file :refer :all]
             [utils.http :as middleware]
+            [utils.date :as date-utils]
+            [clj-time.core :as time]
+            [clj-time.coerce :as coerce]
             [environ.core  :refer [env]]
             [fund-service.config :as config]
             [clojure.tools.logging :as log]
@@ -77,11 +80,58 @@
       (println e)
       (log/error (str "caught exception: " (.getMessage e) " with process-funds")))))
 
+(defn insert-fund-net-value [fund]
+  (let [code (get fund :code)
+        short-name (get fund :short_name)
+        name (get fund :name)
+        type (get fund :type)
+        the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))
+        log-info (str "insert " code " " short-name " " name " " type " at the day: " the-day)
+        html (html-parser/parse (str config/east-fund-url code ".html"))
+        body (get-in html [3 2 13])]
+    (println html)
+    (log/info log-info)
+    (try
+      (if (nil? (mysql/get-fund-net-value-by-date the-day))
+        (println "haha")
+        (log/info "exist already! " log-info))
+      (catch  Exception e
+        (log/error (str "caught exception: " (.getMessage e) " with insert-fund-net-value"))))
+    ))
+
+(defn insert-net-value []
+  (try
+    (let [all-funds (first (partition 1 (mysql/get-all-funds)))]
+      (count (map #(insert-fund-net-value %) all-funds)))
+    (catch Exception e
+      (println e)
+      (log/error (str "caught exception: " (.getMessage e) " with update-net-value")))))
+
+(defn insert-funds-net-value []
+  (try
+    (let [html-str (middleware/http-atom {:url (config/get-funds-data-url (coerce/to-long (time/now)))})
+          trim-str (string/trim
+                     (->
+                       (string/replace html-str #"var db=" "")
+                       (string/replace #"chars|datas|count|record|pages|curpage|showday|indexsy"  #(str "\"" %1 "\""))
+                       (string/replace #";" "")
+                       ))
+          funds (json/read-str trim-str :key-fn keyword)
+          datas (:datas funds)
+          showday (first (:showday funds))
+          the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))]
+      (persist-as-json trim-str (str "/tmp/funds-net-value-" the-day ".json"))
+      (if (= showday the-day)
+        (println "equals")
+        (log/info "Not today's data."))
+      )
+    (catch Exception e
+      (println e)
+      (log/error (str "caught exception: " (.getMessage e) " with insert-funds-net-value")))))
+
 (defn start []
   (log/info "Starting the fund service ... ")
   (process-fund-company)
-  (process-funds))
-
-
-
-;  (println (get-in (html-parser/parse config/fund-company-url) [3 2])))
+  (process-funds)
+  (insert-funds-net-value)
+  )

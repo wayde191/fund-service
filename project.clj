@@ -7,7 +7,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [dk.ative/docjure "1.6.0"]
                  [me.raynes/fs "1.4.4"]
-                 [clj-time "0.8.0"]
+                 [clj-time "0.11.0"]
                  [clj-http "0.7.6"]
                  [digest "1.4.5"]
                  [org.clojure/data.json "0.2.3"]
