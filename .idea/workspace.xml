@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="20776d22-4f02-42f9-9712-1c75a13d7772" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devenv.local" afterPath="$PROJECT_DIR$/devenv.local" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rpm/fund-service" afterPath="$PROJECT_DIR$/src/rpm/fund-service" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/deploy" afterPath="$PROJECT_DIR$/src/scripts/deploy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fund_service/core.clj" afterPath="$PROJECT_DIR$/src/fund_service/core.clj" />
     </list>
     <ignored path="fund-service.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,47 +29,17 @@
         <entry file="file://$PROJECT_DIR$/project.clj">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+              <caret line="71" column="30" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fund-service" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpm/fund-service">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="core.clj" pinned="false" current-in-tab="false">
+      <file leaf-file-name="core.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fund_service/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="20" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pre-install" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpm/pre-install">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pre-uninstall" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpm/pre-uninstall">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.60190475">
+              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -97,11 +65,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devenv.local" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fund-service" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rpm/fund-service">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devenv.local" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/devenv.local">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pre-install" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rpm/pre-install">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,6 +100,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pre-uninstall" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rpm/pre-uninstall">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,7 +132,6 @@
         <option value="$PROJECT_DIR$/test/staffing_service/test/core.clj" />
         <option value="$PROJECT_DIR$/test/fund_service/test/fund.clj" />
         <option value="$PROJECT_DIR$/src/fund_service/staffing.clj" />
-        <option value="$PROJECT_DIR$/src/fund_service/core.clj" />
         <option value="$PROJECT_DIR$/src/utils/http.clj" />
         <option value="$PROJECT_DIR$/resources/fund.json" />
         <option value="$PROJECT_DIR$/resources/log4j.properties" />
@@ -146,6 +143,7 @@
         <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/src/rpm/fund-service" />
         <option value="$PROJECT_DIR$/devenv.local" />
+        <option value="$PROJECT_DIR$/src/fund_service/core.clj" />
       </list>
     </option>
   </component>
@@ -945,12 +943,12 @@
       <workItem from="1473120327888" duration="3277000" />
       <workItem from="1473129544425" duration="149000" />
       <workItem from="1473170291546" duration="5543000" />
-      <workItem from="1473251601844" duration="2743000" />
+      <workItem from="1473251601844" duration="3399000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40324000" />
+    <option name="totallyTimeSpent" value="40980000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1305,22 +1303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/fund-service.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devenv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/deploy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1329,23 +1311,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpm/pre-uninstall">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpm/pre-install">
+    <entry file="file://$PROJECT_DIR$/src/scripts/fund-service.service">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1361,10 +1327,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fund_service/core.clj">
+    <entry file="file://$PROJECT_DIR$/src/rpm/pre-install">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="20" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rpm/pre-uninstall">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1373,6 +1347,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devenv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="30" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fund_service/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60190475">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
           <folding />
         </state>
       </provider>
