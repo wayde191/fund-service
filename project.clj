@@ -53,7 +53,7 @@
         :preremove {:scriptFile "src/rpm/pre-uninstall"}
         :mappings [{:directory "/usr/lib/fund-service"
                     :sources {:source
-                              [{:location ~(str "target/fund-service-" version "-standalone.jar")
+                              [{:location ~(str "target/uberjar/fund-service-" version "-standalone.jar")
                                 :destination "fund-service-standalone.jar"}]}}
                    {:directory "/usr/bin"
                     :filemode "755"
@@ -69,5 +69,4 @@
             "clean-package" ["do" ["clean"] ["package"]]
             "package" ["do" ["compile"] ["uberjar"] ["rpm"]]
             "production" ["shell" "src/scripts/deploy" ~version]
-            "deploy-production" ["do" ["clean-package"] ["production"]]
-            })
+            "deploy-production" ["do" ["clean-package"] ["production"]]})
