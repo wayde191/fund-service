@@ -57,10 +57,11 @@
     (sql/with-query-results rows [(str "select * from net_value where code = '" code "'" " and date = '" date "'")]
       (doall rows))))
 
-(defn insert-fund-net-value [code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state commission show-day]
+(defn insert-fund-net-value [code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state rank commission show-day]
   (sql/with-connection db
     (sql/insert-records :net_value
       {:code code
+       :rank rank
        :name name
        :net_value net-value
        :acc_net_value acc-net-value

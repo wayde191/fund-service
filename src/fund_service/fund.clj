@@ -117,14 +117,15 @@
         day-increase-rate (get fund 8)
         buy-state (get fund 9)
         sell-state (get fund 10)
+        rank (get fund 14)
         commission (get fund 17)
         the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))
-        log-info (str "update-funds-net-value " code " " name " " net-value " " commission " at the day: " the-day)
+        log-info (str "update-funds-net-value " code " " name " " net-value " " commission " : " the-day)
         ]
     (try
       (if (nil? (mysql/get-fund-net-value-by-code-date code show-day))
         (do
-          (mysql/insert-fund-net-value code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state commission show-day)
+          (mysql/insert-fund-net-value code name net-value acc-net-value day-increase day-increase-rate buy-state sell-state rank commission show-day)
           (log/info log-info))
         (log/info "exist already! " log-info))
       (catch  Exception e
@@ -152,6 +153,6 @@
 
 (defn start []
   (log/info "Starting the fund service ... ")
-;  (process-fund-company)
-;  (process-funds)
+  (process-fund-company)
+  (process-funds)
   (process-funds-net-value))
