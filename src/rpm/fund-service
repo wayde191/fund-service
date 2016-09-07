@@ -3,4 +3,4 @@
 # Ensure child processes exit on signal
 trap "kill -- -$BASHPID" EXIT
 
-java -jar /usr/lib/fund-service/fund-service-standalone.jar "$@"
+java -jar /usr/lib/fund-service/fund-service-standalone.jar "daemon"
