@@ -27,7 +27,7 @@
                            (println (str "Failure: " e))
                            (.printStackTrace e)))))
 
-  (at-at/every 43200000 #(daemon args) my-pool))
+  (at-at/every 18000000 #(daemon args) my-pool))
 
 (defmethod operation :default [_ args]
   (println "Please choose an operation"))
