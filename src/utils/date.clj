@@ -12,6 +12,10 @@
 
 (defn sunday [date] (day-of-week date 7))
 
+(defn last-days [days]
+  (let [the-date (time/minus (time/now) (time/days days))]
+  (time/date-time (time/year the-date) (time/month the-date) (time/day the-date) 23 59 59)))
+
 (defn last-sunday [date]
   (if (predicates/sunday? date)
     (time/minus date (time/days 7))

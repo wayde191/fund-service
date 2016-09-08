@@ -120,7 +120,7 @@
         rank (get fund 14)
         commission (get fund 17)
         the-day (date-utils/unparse-date "YYYY-MM-dd" (time/now))
-        log-info (str "update-funds-net-value " code " " name " " net-value " " commission " : " the-day)
+        log-info (str "update-funds-net-value " code " : " the-day)
         ]
     (try
       (if (nil? (mysql/get-fund-net-value-by-code-date code show-day))
