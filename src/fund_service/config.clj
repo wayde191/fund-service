@@ -16,4 +16,9 @@
     date
     "&atfc=&onlySale=0"))
 
+(defn get-fund-history-url [code page]
+  (str "http://fund.eastmoney.com/f10/F10DataApi.aspx?type=lsjz&code=" code
+    "&page=" page
+    "&per=200"))
+
 

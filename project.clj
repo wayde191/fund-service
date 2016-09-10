@@ -19,6 +19,7 @@
                  [org.clojure/java.jdbc "0.0.6"]
                  [mysql/mysql-connector-java "5.1.6"]
                  [clj-tagsoup/clj-tagsoup "0.3.0" :exclusions [org.clojure/clojure]]
+                 [hickory "0.6.0"]
                  [pjstadig/humane-test-output "0.6.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [log4j/log4j "1.2.17" :exclusions [javax.mail/mail
